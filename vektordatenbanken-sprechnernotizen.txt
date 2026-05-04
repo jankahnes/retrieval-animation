@@ -41,7 +41,7 @@ Welche einzelne Dimension wofür „zuständig" ist, lässt sich allerdings nich
 Die Bedeutung eines Vektors entsteht erst aus seiner geometrischen Lage relativ zu allen anderen Vektoren: Texte mit ähnlicher Bedeutung liegen nahe beieinander, verschiedene Texte weiter auseinander. Auf der nächsten Folie zeige ich dazu ein klassisches Beispiel.
  
  
-Folie 4 - Bedeutung als Geometrie
+Folie 5 - Bedeutung als Geometrie
  
 Dieses Beispiel ist eine Vereinfachung, aber ist trotzdem gut zum Verständnis.
 Nehmen wir für die Visualisierung an, dass der Bedeutungsraum hier nur zwei Dimensionen hat. 
@@ -53,7 +53,7 @@ Analog kann man Differenzvektoren finden, die etwa der Beziehung „Land zu typi
 Wichtig zur Einordnung: Dieses Beispiel ist schon über 10 Jahre alt, und weil Embedding-Modelle heute eher mit Textabschitten und nicht mehr mit einzelnen Wörtern arbeiten, ist es nicht mehr wirklich so reproduzierbar. Die Grundidee bleibt jedoch die gleiche, und es ist trotzdem ein gutes Beispiel zum Verständnis.
 
  
-Folie 5 - Vektordatenbank vs. relationale DB
+Folie 6 - Vektordatenbank vs. relationale DB
  
 Damit ihr die Vektordatenbanken besser einordnen könnt, vergleiche ich sie kurz mit relationalen Datenbanken, die euch vermutlich vertrauter sind.
 Der Kern von diesem Vergleich ist: Relationale Datenbanken arbeiten mit Wahr und Falsch. Also bei einer Abfrage wird geschaut: 
@@ -66,7 +66,7 @@ Diese Felder erfüllen zwei Zwecke: Sie ermöglichen es, einen Treffer wieder au
 Zusammenfassen lässt sich der Unterschied so: Vektordatenbanken beantworten die Frage „Was ist ähnlich?" - relationale Datenbanken beantworten die Frage „Was ist gleich?".
  
  
-Folie 6 - Retrieval (Wiederholung)
+Folie 7 - Retrieval (Wiederholung)
 
 Um jetzt das Thema Retrieval nochmal mit diesem Wissen über Vektoren und Vektordatenbanken zu vervollständigen, habe ich euch eine Animation mitgebracht. 
 S1: Wie ihr in der Mitte sehen könnt, ist das unser Vektormodell.
@@ -83,7 +83,7 @@ S10: Am Ende werden die top-k (also zb. top 3) Chunks gewählt. Das sind jetzt d
 Das ist natürlich wieder eine Vereinfachung gewesen. Ich sagte ja schon, dass es auf Vektordatenbanken auch Indexe gibt. Mit einem solchen Index (zb. HNSW [Q7]) muss man eben nicht mit jedem Chunk vergleichen, sondern nur mit einem Bruchteil. Somit kann ermöglicht werden, dass man die Top-k von Millionen Chunks in Millisekunden bekommt.
 
  
-Folie 7 - Wo Vektorsuche allein versagt
+Folie 8 - Wo Vektorsuche allein versagt
  
 Auch wenn Vektorsuche für RAG unentbehrlich ist, hat sie in der Praxis einige Blind-Spots, die man kennen sollte.
  
@@ -100,7 +100,7 @@ Auch Negationen sind problematisch: „nicht toxisch" liegt im Vektorraum sehr n
 Die etablierte Lösung dafür ist Hybrid-Retrieval. [Q8] Dabei kombiniert man Vektorsuche mit einem klassischen Keyword-Verfahren - meist BM25, das sich seit langem als Standard für Keyword-Suche etabliert hat - und fusioniert die Ergebnisse anschließend gewichtet, typischerweise über Reciprocal Rank Fusion. Dadurch werden exakte Treffer auf Codes, Eigennamen und seltene Begriffe nicht mehr verschluckt, und die semantische Komponente sorgt weiterhin dafür, dass auch sinngemäße Treffer erkannt werden.
  
  
-Folie 8 - Architekturvorschlag: Ingestion & Retrieval-Tool
+Folie 9 - Architekturvorschlag: Ingestion & Retrieval-Tool
 
 Hier seht ihr dann, wie so ein Retrieval-Tool konkret für den Chatbot aussehen könnte: Es nimmt eine Vektor-Query und eine getrennte BM25-Query entgegen, als auch (optional) eine Gewichtung zwischen beiden und optionale Ausschlusswörter.
  
